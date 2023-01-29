@@ -18,8 +18,15 @@
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 100,
+      "services": [
+        {
+          "name": "Curso Empíricus",
+          "cost": "100",
+          "description": "Curso para aprender sobre investimentos",
+          "id": "d98647fe-0a0f-4df8-a18c-ccbe3079237c"
+        }
+      ],
       "id": 2
     }
   ],

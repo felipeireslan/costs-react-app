@@ -3,5 +3,8 @@ export { default as Message } from "./message";
 export { default as LinkButton } from "./link-button";
 export { default as ProjectCard } from "./project-card";
 export { default as Loader } from "./loader";
+export { default as ServiceForm } from "./service-form";
+export { default as ServiceList } from "./service-list";
+export { default as ServiceCard } from "./service-card";
 export * from "./form";
 export * from "./layout";

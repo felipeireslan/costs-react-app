@@ -17,7 +17,7 @@ function Projects() {
   const location = useLocation();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       fetch("http://localhost:5000/projects", {
         method: "GET",
         headers: {
@@ -31,6 +31,8 @@ function Projects() {
         })
         .catch((err) => console.error(err));
     }, 1000);
+
+    return () => clearTimeout(timer)
   }, []);
 
   let message = "";
