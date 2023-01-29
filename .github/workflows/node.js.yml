@@ -28,3 +28,35 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+    
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: 'google.com.br'
+    needs: build
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy DEV
+        
+  deploy-hmg:
+    runs-on: ubuntu-latest
+    environment:
+      name: hmg
+      url: 'google.com.br'
+    needs: deploy-dev
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy HMG
+        
+  deploy-prd:
+    runs-on: ubuntu-latest
+    environment:
+      name: prd
+      url: 'google.com.br'
+    needs: deploy-hmg
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy PRD
+        
+      
