@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "name": "Teste",
-      "budget": "1234",
+      "name": "Estudo React",
+      "budget": "51234",
       "category": {
         "id": "1",
         "name": "Infra"
@@ -13,7 +13,7 @@
     },
     {
       "name": "Investimentos",
-      "budget": "1000",
+      "budget": "10",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
