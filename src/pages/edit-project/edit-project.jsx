@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ProjectDetails from "../../components/project-details/project-details";
 import { Loader, Container, ProjectForm, Message } from "./../../components";
 
 import styles from "./edit-project.module.css";
@@ -11,6 +12,7 @@ function EditProject() {
   const [showForm, setShowForm] = useState(false);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState();
+  const [showServiceForm, setShowServiceForm] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -30,9 +32,12 @@ function EditProject() {
   }, [id]);
 
   function submit(project) {
+    setMessage("");
+
     if (project.budget < project.cost) {
       setMessage("O orçamento não pode ser menor do que o custo do projeto!");
       setMessageType("error");
+      return;
     }
 
     fetch(`http://localhost:5000/projects/${project.id}`, {
@@ -52,8 +57,12 @@ function EditProject() {
       .catch((err) => console.error(err));
   }
 
-  function toggleState() {
+  function toggleDetailsState() {
     setShowForm(!showForm);
+  }
+
+  function toggleServiceState() {
+    setShowServiceForm(!showServiceForm);
   }
 
   return (
@@ -64,23 +73,11 @@ function EditProject() {
           <Container customClass="column">
             <div className={styles.details_container}>
               <h1>Projeto: {project.name} </h1>
-              <button className={styles.btn} onClick={toggleState}>
+              <button className={styles.btn} onClick={toggleDetailsState}>
                 {showForm ? "Fechar" : "Editar"}
               </button>
               {!showForm ? (
-                <div className={styles.project_info_container}>
-                  <div>
-                    <p>
-                      <span>Categoria: </span> {project.category.name}
-                    </p>
-                    <p>
-                      <span>Orçamento Total: </span> R$ {project.budget}
-                    </p>
-                    <p>
-                      <span>Utilizado: </span>R$ {project.cost}
-                    </p>
-                  </div>
-                </div>
+                <ProjectDetails project={project} />
               ) : (
                 <ProjectForm
                   handleSubmit={submit}
@@ -88,6 +85,16 @@ function EditProject() {
                   projectData={project}
                 />
               )}
+            </div>
+            <div className={styles.service_form_container}>
+              <h2>Adicione um serviço: </h2>
+              <button className={styles.btn} onClick={toggleServiceState}>
+                {!showServiceForm ? "Adicionar Serviço" : "Fechar"}
+              </button>
+            </div>
+            <div>
+              <h2>Serviços</h2>
+              <p>Itens...</p>
             </div>
           </Container>
         </div>
