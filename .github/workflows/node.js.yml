@@ -13,6 +13,7 @@ jobs:
   lint-validation:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: npm run lint-validation
 
   build:
