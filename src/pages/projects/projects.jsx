@@ -1,3 +1,4 @@
+import { React } from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -32,7 +33,7 @@ function Projects() {
         .catch((err) => console.error(err));
     }, 1000);
 
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer);
   }, []);
 
   let message = "";
@@ -49,7 +50,7 @@ function Projects() {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setProjects(projects.filter((project) => project.id !== id));
         setPMessage("Projeto removido com sucesso!");
       })
