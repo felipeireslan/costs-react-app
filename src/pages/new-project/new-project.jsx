@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { ProjectForm } from "../../components";
 import styles from "./new-project.module.css";

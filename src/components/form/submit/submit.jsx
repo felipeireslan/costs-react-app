@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from 'react'
 import styles from "./submit.module.css";
 
 function Submit({ text }) {

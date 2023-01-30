@@ -1,3 +1,4 @@
+import React from "react";
 import load from "./../../img/loading.svg";
 
 import styles from "./loader.module.css";

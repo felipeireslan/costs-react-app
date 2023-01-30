@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from 'react'
 import styles from "./select.module.css";
 
 function Select({ text, name, options, handleSelect, value }) {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { ServiceCard } from "./../../components";
 
 function ServiceList({ services, handleRemove }) {
