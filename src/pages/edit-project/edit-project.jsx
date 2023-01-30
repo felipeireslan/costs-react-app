@@ -1,6 +1,7 @@
+import { React } from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { parse, v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import ProjectDetails from "../../components/project-details/project-details";
 import {
   Loader,
@@ -95,7 +96,7 @@ function EditProject() {
       body: JSON.stringify(project),
     })
       .then((response) => response.json())
-      .then((data) => setShowServiceForm(false))
+      .then(() => setShowServiceForm(false))
       .catch((err) => console.error(err));
   }
 
@@ -117,7 +118,7 @@ function EditProject() {
       body: JSON.stringify(projectUpdated),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         setProject(projectUpdated);
         setServices(servicesUpdated);
         setMessage("Serviço removido com sucesso");

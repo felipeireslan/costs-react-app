@@ -5,7 +5,7 @@ import {
   Message,
   Container,
   LinkButton,
-  ProjectCard,
+  ProjectList,
   Loader,
 } from "../../components";
 
@@ -14,7 +14,7 @@ import styles from "./projects.module.css";
 function Projects() {
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
-  const [pMessage, setPMessage] = useState("");
+  const [message, setMessage] = useState("");
   const location = useLocation();
 
   useEffect(() => {
@@ -36,10 +36,10 @@ function Projects() {
     return () => clearTimeout(timer);
   }, []);
 
-  let message = "";
+  let navMessage = "";
 
   if (location.state) {
-    message = location.state.message;
+    navMessage = location.state.message;
   }
 
   function removeProject(id) {
@@ -52,31 +52,21 @@ function Projects() {
       .then((response) => response.json())
       .then(() => {
         setProjects(projects.filter((project) => project.id !== id));
-        setPMessage("Projeto removido com sucesso!");
+        setMessage("Projeto removido com sucesso!");
       })
       .catch((err) => console.error(err));
   }
 
   return (
     <div className={styles.project_container}>
+      {navMessage && <Message message={navMessage} type="success" />}
       {message && <Message message={message} type="success" />}
-      {pMessage && <Message message={pMessage} type="success" />}
       <div className={styles.title_container}>
         <h1>Projetos</h1>
         <LinkButton to="/projects/new-project" text="Criar Projeto" />
       </div>
       <Container customClass="start">
-        {projects?.length > 0 &&
-          projects.map(({ id, name, category, budget }) => (
-            <ProjectCard
-              key={id}
-              id={id}
-              name={name}
-              category={category.name}
-              budget={budget}
-              handleRemove={removeProject}
-            />
-          ))}
+        <ProjectList projects={projects} removeProject={removeProject} />
         {isLoading && <Loader />}
         {!isLoading && projects.length <= 0 && (
           <p>Não há projetos cadastrados</p>

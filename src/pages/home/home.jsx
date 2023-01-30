@@ -1,3 +1,4 @@
+import { React } from "react";
 import { LinkButton } from "../../components";
 
 import styles from "./home.module.css";
